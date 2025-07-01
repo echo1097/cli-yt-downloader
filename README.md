@@ -16,3 +16,7 @@ Run `python3 main.py --mp4/--mp3 video_url`
 Example: `python3 main.py --mp4 https://www.youtube.com/watch?v=dQw4w9WgXcQ`
 
 This will output the MP4/MP3 into your downloads folder. The script automatically cleans up temporary files. 
+
+# To-Do
+
+Gui
