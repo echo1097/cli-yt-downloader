@@ -22,7 +22,8 @@ def dl_video(url, format_c):
     elif format_c == 'mp4':
         ydl_opts = {
             'nocheckcertificate': True,
-            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+            'format': 'bestvideo[ext=mp4][vcodec^=avc1]+bestaudio[ext=m4a]/best[ext=mp4][vcodec^=avc1]/best',
+            'merge_output_format': 'mp4',
             'outtmpl': os.path.join(downloads_path, '%(title)s.%(ext)s'),
         }
 
@@ -40,9 +41,9 @@ def dl_video(url, format_c):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='YouTube Downloader CLI')
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--mp3', action='store_true', help='Download as MP3')
-    group.add_argument('--mp4', action='store_true', help='Download as MP4')
-    parser.add_argument('url', type=str, help='The URL of the video to download')
+    group.add_argument('--mp3', action='store_true', help='dl as MP3')
+    group.add_argument('--mp4', action='store_true', help='dl as MP4')
+    parser.add_argument('url', type=str, help='url of video')
 
     args = parser.parse_args()
 
@@ -50,4 +51,3 @@ if __name__ == "__main__":
         dl_video(args.url, 'mp3')
     elif args.mp4:
         dl_video(args.url, 'mp4') 
-        
